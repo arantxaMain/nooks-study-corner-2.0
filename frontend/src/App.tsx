@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import './App.css'
+import Pomodoro from './components/Pomodoro'
 
 function App() {
 
@@ -8,7 +8,8 @@ function App() {
       <div>
         
       </div>
-      <h1>Vite + React</h1>
+      <h1>Prueba</h1>
+      <Pomodoro />
       <div className="card">
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
