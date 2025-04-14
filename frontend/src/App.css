@@ -1,13 +1,4 @@
-@import "tailwindcss";
-
 #root {
-  @apply max-w-screen-lg mx-auto p-8 text-center;
+  @apply mx-auto text-center;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}

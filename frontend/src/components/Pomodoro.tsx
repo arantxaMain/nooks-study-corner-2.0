@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Pomodoro: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState<number>(25 * 60); // 25 minutos en segundos
+  const [timeLeft, setTimeLeft] = useState<number>(25 * 60);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
@@ -17,7 +17,7 @@ const Pomodoro: React.FC = () => {
       resetPomodoro();
     }
 
-    return () => clearInterval(interval); // Limpiar el intervalo cuando se desactive
+    return () => clearInterval(interval);
   }, [isActive, timeLeft]);
 
   const startPomodoro = () => {
@@ -43,16 +43,16 @@ const Pomodoro: React.FC = () => {
 
   return (
     <div className="pomodoro">
-      <div className="time-display">
-        <h2>{formatTime(timeLeft)}</h2>
+      <div className="time-display text-matcha">
+        <h2 className="font-sour text-8xl">{formatTime(timeLeft)}</h2>
       </div>
       <div className="controls">
         {isPaused ? (
-          <button onClick={startPomodoro}>Reanudar</button>
+          <button onClick={startPomodoro}><span className="material-symbols text-gray-700">play_arrow</span></button>
         ) : isActive ? (
           <button onClick={pausePomodoro}>Pausar</button>
         ) : (
-          <button onClick={startPomodoro}>Iniciar</button>
+          <button onClick={startPomodoro}><span className="material-symbols text-gray-700">play_arrow</span></button>
         )}
         <button onClick={resetPomodoro}>Resetear</button>
       </div>
