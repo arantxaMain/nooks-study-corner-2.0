@@ -1,60 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useTimer } from '../contexts/TimerContext';
 
 const Pomodoro: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState<number>(25 * 60);
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
-
-  useEffect(() => {
-    let interval: number;
-
-    if (isActive && timeLeft > 0) {
-      interval = setInterval(() => {
-        setTimeLeft((prevTime) => prevTime - 1);
-      }, 1000);
-    } else if (timeLeft === 0) {
-      alert('¡Tiempo de descanso!');
-      resetPomodoro();
-    }
-
-    return () => clearInterval(interval);
-  }, [isActive, timeLeft]);
-
-  const startPomodoro = () => {
-    setIsActive(true);
-    setIsPaused(false);
-  };
-
-  const pausePomodoro = () => {
-    setIsActive(false);
-    setIsPaused(true);
-  };
-
-  const resetPomodoro = () => {
-    setIsActive(false);
-    setTimeLeft(25 * 60); // Reseteamos al tiempo inicial
-  };
-
-  const formatTime = (seconds: number): string => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
-  };
+  const { timeLeft, isActive, isPaused, startTimer, pauseTimer, resetTimer, formatTime } = useTimer();
 
   return (
-    <div className="pomodoro">
-      <div className="time-display text-matcha">
-        <h2 className="font-sour text-8xl">{formatTime(timeLeft)}</h2>
+    <div>
+        <button className='cursor-pointer' onClick={resetTimer}><span className="material-symbols text-4xl text-matcha">refresh</span></button>
+      <div className="w-md flex justify justify-items-center text-matcha">
+        <h2 className="font-sour mx-auto text-8xl">{formatTime(timeLeft)}</h2>
       </div>
       <div className="controls">
         {isPaused ? (
-          <button onClick={startPomodoro}><span className="material-symbols text-gray-700">play_arrow</span></button>
+          <button className='cursor-pointer' onClick={startTimer}><span className="material-symbols text-8xl text-matcha">play_arrow</span></button>
         ) : isActive ? (
-          <button onClick={pausePomodoro}>Pausar</button>
+          <button className='cursor-pointer' onClick={pauseTimer}><span className="material-symbols text-8xl text-matcha">pause</span></button>
         ) : (
-          <button onClick={startPomodoro}><span className="material-symbols text-gray-700">play_arrow</span></button>
+          <button className='cursor-pointer' onClick={startTimer}><span className="material-symbols text-8xl text-matcha">play_arrow</span></button>
         )}
-        <button onClick={resetPomodoro}>Resetear</button>
       </div>
     </div>
   );
