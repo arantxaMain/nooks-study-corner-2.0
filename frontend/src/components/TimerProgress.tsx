@@ -1,6 +1,6 @@
 import React from 'react';
 import { Progress } from './Progress';
-import { useTimer } from '../contexts/TimerContext';
+import { useTimer } from '../hooks/useTimer';
 
 const TimerProgress: React.FC = () => {
   const { progress } = useTimer();
