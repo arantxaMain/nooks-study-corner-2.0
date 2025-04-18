@@ -1,11 +1,13 @@
-// components/BackgroundMusic.tsx
 import { useEffect, useState, useRef } from 'react';
 import { playlist } from '../lib/playlist';
+import '../styles/music.css';
 
 export default function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [currentHour, setCurrentHour] = useState(new Date().getHours());  
   const [music, setMusic] = useState(playlist[currentHour] || playlist[0]);
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,19 +22,36 @@ export default function BackgroundMusic() {
 
   useEffect(() => {
     const audio = audioRef.current;
-    console.log(`reproduciendo música de las ${currentHour}`);
     if (audio) {
-      audio.volume = 1;
-      audio.play().catch(() => {
-        console.log('El navegador bloqueó la reproducción automática');
-      });
+      audio.volume = isMuted ? 0 : volume;
     }
-  }, []);
+  }, [volume, isMuted]);
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
 
   return (
-    <audio ref={audioRef} controls loop>
-      <source src={music} type="audio/mpeg" />
-      Tu navegador no soporta el elemento audio.
-    </audio>
+    <div className="audio-player">
+      <audio ref={audioRef} loop autoPlay>
+        <source src={music} type="audio/mpeg" />
+      </audio>
+      
+      <button onClick={toggleMute} className="mute-button">
+        <span className="material-symbols">
+          {isMuted ? 'volume_off' : 'volume_up'}
+        </span>
+      </button>
+
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        value={volume}
+        onChange={(e) => setVolume(Number(e.target.value))}
+        className="volume-slider"
+      />
+    </div>
   );
 }

@@ -2,7 +2,6 @@ import './styles/App.css'
 import Pomodoro from './components/Pomodoro'
 import { TimerProvider } from './contexts/TimerProvider';
 import TimerProgress from './components/TimerProgress'
-import BackgroundMusic from './components/BackgroundMusic';
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
           <TimerProgress />
         </div>
       </TimerProvider>
-      <BackgroundMusic />
     </div>
   );
 }
