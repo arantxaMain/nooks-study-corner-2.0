@@ -5,14 +5,16 @@ import TimerProgress from './components/TimerProgress'
 
 function App() {
   return (
-    <div>
-      <TimerProvider>
-        <div>
+    <TimerProvider>
+      <div className="app-container">
+        <div className="pomodoro-container">
           <Pomodoro />
+        </div>
+        <div className="progress-container">
           <TimerProgress />
         </div>
-      </TimerProvider>
-    </div>
+      </div>
+    </TimerProvider>
   );
 }
 
