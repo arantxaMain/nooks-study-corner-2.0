@@ -1,3 +1,47 @@
-#root {
-  @apply mx-auto text-center;
+.app-root {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.app-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.pomodoro-section {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 0.5rem;
+}
+
+.progress-section {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 33.333333%;
+  min-width: 300px;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 0.5rem;
+}
+
+.music-section {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 0.5rem;
 }

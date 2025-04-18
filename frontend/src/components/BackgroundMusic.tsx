@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { playlist } from '../lib/playlist';
-import '../styles/music.css';
+import '../styles/components/BackgroundMusic.css';
 
 export default function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null);
